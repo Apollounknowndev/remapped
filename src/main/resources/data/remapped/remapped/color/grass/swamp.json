@@ -1,0 +1,8 @@
+{
+  "color": 5011004,
+  "blocks": "#remapped:map_color/grass_block",
+  "biomes": [
+    "minecraft:swamp",
+    "minecraft:mangrove_swamp"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "color": 9353585,
+  "blocks": "#remapped:map_color/grass_block",
+  "biomes": [
+    "minecraft:the_void",
+    "minecraft:warm_ocean",
+    "minecraft:lukewarm_ocean",
+    "minecraft:deep_lukewarm_ocean",
+    "minecraft:ocean",
+    "minecraft:deep_ocean",
+    "minecraft:cold_ocean",
+    "minecraft:deep_cold_ocean",
+    "minecraft:river",
+    "minecraft:lush_caves",
+    "minecraft:the_end",
+    "minecraft:end_highlands",
+    "minecraft:end_midlands",
+    "minecraft:small_end_islands",
+    "minecraft:end_barrens"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "color": 8434839,
+  "blocks": "#remapped:map_color/grass_block",
+  "biomes": [
+    "minecraft:frozen_river",
+    "minecraft:frozen_ocean",
+    "minecraft:snowy_plains",
+    "minecraft:ice_spikes",
+    "minecraft:grove",
+    "minecraft:frozen_peaks",
+    "minecraft:jagged_peaks",
+    "minecraft:snowy_slopes",
+    "minecraft:snowy_taiga",
+    "minecraft:snowy_beach"
+  ]
+}

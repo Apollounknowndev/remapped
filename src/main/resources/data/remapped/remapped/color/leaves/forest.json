@@ -1,0 +1,9 @@
+{
+  "color": 4160546,
+  "blocks": "#remapped:map_color/leaves",
+  "biomes": [
+    "minecraft:forest",
+    "minecraft:flower_forest",
+    "minecraft:dark_forest"
+  ]
+}

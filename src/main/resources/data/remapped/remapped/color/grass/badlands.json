@@ -1,0 +1,9 @@
+{
+  "color": 9470285,
+  "blocks": "#remapped:map_color/grass_block",
+  "biomes": [
+    "minecraft:badlands",
+    "minecraft:eroded_badlands",
+    "minecraft:wooded_badlands"
+  ]
+}

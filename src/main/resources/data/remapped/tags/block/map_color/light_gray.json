@@ -1,0 +1,15 @@
+{
+    "values": [
+        "minecraft:light_gray_bed",
+        "minecraft:light_gray_wool",
+        "minecraft:light_gray_stained_glass",
+        "minecraft:light_gray_carpet",
+        "minecraft:light_gray_shulker_box",
+        "minecraft:light_gray_glazed_terracotta",
+        "minecraft:light_gray_concrete",
+        "minecraft:light_gray_concrete_powder",
+        "minecraft:structure_block",
+        "minecraft:jigsaw",
+        "minecraft:light_gray_candle"
+    ]
+}

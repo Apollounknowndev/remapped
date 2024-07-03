@@ -1,0 +1,9 @@
+{
+  "color": 4566514,
+  "use_dithering": true,
+  "blocks": "#remapped:map_color/water",
+  "biomes": [
+    "minecraft:lukewarm_ocean",
+    "minecraft:deep_lukewarm_ocean"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "color": 4566514,
+  "use_dithering": true,
+  "blocks": "#remapped:map_color/water",
+  "biomes": [
+    "minecraft:frozen_ocean",
+    "minecraft:deep_frozen_ocean",
+    "minecraft:frozen_river",
+    "minecraft:snowy_beach",
+    "minecraft:snowy_taiga"
+  ]
+}

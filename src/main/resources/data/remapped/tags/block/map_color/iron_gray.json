@@ -1,0 +1,17 @@
+{
+    "values": [
+        "minecraft:iron_block",
+        "minecraft:iron_door",
+        "minecraft:brewing_stand",
+        "minecraft:anvil",
+        "minecraft:chipped_anvil",
+        "minecraft:damaged_anvil",
+        "minecraft:heavy_weighted_pressure_plate",
+        "minecraft:iron_trapdoor",
+        "minecraft:grindstone",
+        "minecraft:lantern",
+        "minecraft:soul_lantern",
+        "minecraft:lodestone",
+        "minecraft:heavy_core"
+    ]
+}

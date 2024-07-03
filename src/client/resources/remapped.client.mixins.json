@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "package": "dev.worldgen.remapped.mixin.client",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "CartographyTableScreenMixin",
+    "ClientPlayNetworkHandlerMixin",
+    "ClientWorldMixin",
+    "GameRendererMixin",
+    "HeldItemRendererMixin",
+    "ItemFrameEntityRendererMixin",
+    "MinecraftClientMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

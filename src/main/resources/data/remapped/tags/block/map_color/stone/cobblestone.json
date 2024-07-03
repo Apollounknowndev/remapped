@@ -1,0 +1,21 @@
+{
+  "replace": true,
+  "values": [
+    "minecraft:cobblestone",
+    "minecraft:mossy_cobblestone",
+    "minecraft:cobblestone_stairs",
+    "minecraft:cobblestone_wall",
+    "minecraft:mossy_cobblestone_wall",
+    "minecraft:mossy_cobblestone_stairs",
+    "minecraft:mossy_cobblestone_slab",
+    "minecraft:dispenser",
+    "minecraft:sticky_piston",
+    "minecraft:piston",
+    "minecraft:piston_head",
+    "minecraft:moving_piston",
+    "minecraft:furnace",
+    "minecraft:dropper",
+    "minecraft:smoker",
+    "minecraft:blast_furnace"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "color": 8960871,
+  "blocks": "#remapped:map_color/grass_block",
+  "biomes": [
+    "minecraft:birch_forest",
+    "minecraft:old_growth_birch_forest"
+  ]
+}

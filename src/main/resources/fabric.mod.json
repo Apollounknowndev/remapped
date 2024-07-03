@@ -1,0 +1,39 @@
+{
+	"schemaVersion": 1,
+	"id": "remapped",
+	"version": "${version}",
+	"name": "Remapped",
+	"description": "Reworked maps, featuring better map colors and cheaper maps!",
+	"authors": [
+		"Apollo"
+	],
+	"license": "MIT",
+	"icon": "assets/remapped/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"dev.worldgen.remapped.Remapped"
+		],
+		"client": [
+			"dev.worldgen.remapped.RemappedClient"
+		]
+	},
+	"mixins": [
+		"remapped.mixins.json",
+		{
+			"config": "remapped.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.15.11",
+		"minecraft": "~1.21",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"custom": {
+		"loom:injected_interfaces": {
+			"net/minecraft/class_1937": ["dev/worldgen/remapped/duck/RemappedWorldAccess"]
+		}
+	}
+}

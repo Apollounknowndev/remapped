@@ -1,0 +1,6 @@
+{
+  "color": 6141935,
+  "use_dithering": true,
+  "blocks": "#remapped:map_color/water",
+  "biomes": "minecraft:cherry_grove"
+}

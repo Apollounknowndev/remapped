@@ -1,0 +1,13 @@
+{
+  "color": 4879687,
+  "blocks": "#remapped:map_color/leaves",
+  "biomes": [
+    "minecraft:old_growth_spruce_taiga",
+    "minecraft:old_growth_pine_taiga",
+    "minecraft:taiga",
+    "minecraft:windswept_gravelly_hills",
+    "minecraft:windswept_forest",
+    "minecraft:windswept_hills",
+    "minecraft:stony_shore"
+  ]
+}

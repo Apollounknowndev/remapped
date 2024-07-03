@@ -1,0 +1,10 @@
+{
+    "values": [
+        "minecraft:diamond_block",
+        "minecraft:beacon",
+        "minecraft:prismarine_bricks",
+        "minecraft:prismarine_brick_stairs",
+        "minecraft:prismarine_brick_slab",
+        "minecraft:conduit"
+    ]
+}

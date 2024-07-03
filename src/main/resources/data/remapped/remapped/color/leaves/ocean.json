@@ -1,0 +1,16 @@
+{
+  "color": 5273398,
+  "blocks": "#remapped:map_color/leaves",
+  "biomes": [
+    "minecraft:the_void",
+    "minecraft:warm_ocean",
+    "minecraft:lukewarm_ocean",
+    "minecraft:deep_lukewarm_ocean",
+    "minecraft:ocean",
+    "minecraft:deep_ocean",
+    "minecraft:cold_ocean",
+    "minecraft:deep_cold_ocean",
+    "minecraft:river",
+    "minecraft:lush_caves"
+  ]
+}

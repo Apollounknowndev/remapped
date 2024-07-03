@@ -1,0 +1,23 @@
+{
+    "values": [
+        "minecraft:nether_gold_ore",
+        "minecraft:netherrack",
+        "minecraft:nether_bricks",
+        "minecraft:nether_brick_fence",
+        "minecraft:nether_brick_stairs",
+        "minecraft:nether_quartz_ore",
+        "minecraft:nether_brick_slab",
+        "minecraft:magma_block",
+        "minecraft:red_nether_bricks",
+        "minecraft:red_nether_brick_stairs",
+        "minecraft:red_nether_brick_slab",
+        "minecraft:nether_brick_wall",
+        "minecraft:red_nether_brick_wall",
+        "minecraft:crimson_fungus",
+        "minecraft:weeping_vines",
+        "minecraft:weeping_vines_plant",
+        "minecraft:crimson_roots",
+        "minecraft:chiseled_nether_bricks",
+        "minecraft:cracked_nether_bricks"
+    ]
+}

@@ -1,0 +1,10 @@
+{
+  "color": 5884220,
+  "blocks": "#remapped:map_color/grass_block",
+  "biomes": [
+    "minecraft:bamboo_jungle",
+    "minecraft:jungle",
+    "minecraft:sparse_jungle",
+    "minecraft:mushroom_fields"
+  ]
+}

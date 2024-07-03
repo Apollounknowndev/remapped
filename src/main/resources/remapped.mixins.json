@@ -1,0 +1,21 @@
+{
+  "required": true,
+  "package": "dev.worldgen.remapped.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "CartographyScreenHandlerMixin",
+    "CartographyScreenHandlerSlotMixin",
+    "EntityTrackerEntryMixin",
+    "FilledMapItemMixin",
+    "ItemMixin",
+    "MapExtendingRecipeMixin",
+    "ServerWorldMixin",
+    "TooltipContextAccessor",
+    "WorldMixin",
+    "entity.ItemFrameEntityMixin",
+    "entity.ServerPlayerEntityMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

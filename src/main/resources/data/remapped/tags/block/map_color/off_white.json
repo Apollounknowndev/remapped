@@ -1,0 +1,22 @@
+{
+    "values": [
+        "minecraft:diorite",
+        "minecraft:polished_diorite",
+        "minecraft:quartz_block",
+        "minecraft:chiseled_quartz_block",
+        "minecraft:quartz_pillar",
+        "minecraft:quartz_stairs",
+        "minecraft:sea_lantern",
+        "minecraft:quartz_slab",
+        "minecraft:smooth_quartz",
+        "minecraft:polished_diorite_stairs",
+        "minecraft:smooth_quartz_stairs",
+        "minecraft:diorite_stairs",
+        "minecraft:polished_diorite_slab",
+        "minecraft:smooth_quartz_slab",
+        "minecraft:diorite_slab",
+        "minecraft:diorite_wall",
+        "minecraft:target",
+        "minecraft:quartz_bricks"
+    ]
+}

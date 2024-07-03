@@ -1,0 +1,26 @@
+{
+    "values": [
+        "minecraft:black_bed",
+        "minecraft:black_wool",
+        "minecraft:obsidian",
+        "minecraft:black_stained_glass",
+        "minecraft:end_portal",
+        "minecraft:dragon_egg",
+        "minecraft:black_carpet",
+        "minecraft:coal_block",
+        "minecraft:end_gateway",
+        "minecraft:black_shulker_box",
+        "minecraft:black_glazed_terracotta",
+        "minecraft:black_concrete",
+        "minecraft:black_concrete_powder",
+        "minecraft:netherite_block",
+        "minecraft:ancient_debris",
+        "minecraft:crying_obsidian",
+        "minecraft:respawn_anchor",
+        "minecraft:black_candle",
+        "minecraft:sculk",
+        "minecraft:sculk_vein",
+        "minecraft:sculk_catalyst",
+        "minecraft:sculk_shrieker"
+    ]
+}

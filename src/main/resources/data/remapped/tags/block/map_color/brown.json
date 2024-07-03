@@ -1,0 +1,32 @@
+{
+    "values": [
+        "minecraft:dark_oak_planks",
+        "minecraft:dark_oak_log",
+        "minecraft:stripped_dark_oak_log",
+        "minecraft:dark_oak_wood",
+        "minecraft:stripped_dark_oak_wood",
+        "minecraft:brown_bed",
+        "minecraft:brown_wool",
+        "minecraft:brown_mushroom",
+        "minecraft:dark_oak_sign",
+        "minecraft:dark_oak_wall_sign",
+        "minecraft:dark_oak_hanging_sign",
+        "minecraft:dark_oak_wall_hanging_sign",
+        "minecraft:dark_oak_pressure_plate",
+        "minecraft:soul_sand",
+        "minecraft:soul_soil",
+        "minecraft:brown_stained_glass",
+        "minecraft:dark_oak_trapdoor",
+        "minecraft:command_block",
+        "minecraft:dark_oak_stairs",
+        "minecraft:brown_carpet",
+        "minecraft:dark_oak_slab",
+        "minecraft:dark_oak_fence_gate",
+        "minecraft:dark_oak_fence",
+        "minecraft:dark_oak_door",
+        "minecraft:brown_shulker_box",
+        "minecraft:brown_glazed_terracotta",
+        "minecraft:brown_concrete",
+        "minecraft:brown_candle"
+    ]
+}

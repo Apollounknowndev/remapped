@@ -1,0 +1,15 @@
+{
+  "values": [
+    "minecraft:bedrock",
+    "minecraft:spawner",
+    "minecraft:cauldron",
+    "minecraft:water_cauldron",
+    "minecraft:lava_cauldron",
+    "minecraft:powder_snow_cauldron",
+    "minecraft:ender_chest",
+    "minecraft:hopper",
+    "minecraft:observer",
+    "minecraft:trial_spawner",
+    "minecraft:vault"
+  ]
+}

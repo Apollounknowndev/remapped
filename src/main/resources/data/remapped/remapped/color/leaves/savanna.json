@@ -1,0 +1,10 @@
+{
+  "color": 8090910,
+  "blocks": "#remapped:map_color/leaves",
+  "biomes": [
+    "minecraft:savanna",
+    "minecraft:savanna_plateau",
+    "minecraft:windswept_savanna",
+    "minecraft:desert"
+  ]
+}

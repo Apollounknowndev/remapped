@@ -1,0 +1,12 @@
+{
+  "color": 5536289,
+  "blocks": "#remapped:map_color/leaves",
+  "biomes": [
+    "minecraft:plains",
+    "minecraft:sunflower_plains",
+    "minecraft:dripstone_caves",
+    "minecraft:stony_peaks",
+    "minecraft:deep_dark",
+    "minecraft:beach"
+  ]
+}

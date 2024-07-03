@@ -1,0 +1,31 @@
+{
+  "values": [
+    "minecraft:stone",
+    "minecraft:gold_ore",
+    "minecraft:iron_ore",
+    "minecraft:coal_ore",
+    "minecraft:lapis_ore",
+    "minecraft:diamond_ore",
+    "minecraft:stone_pressure_plate",
+    "minecraft:redstone_ore",
+    "minecraft:stone_bricks",
+    "minecraft:mossy_stone_bricks",
+    "minecraft:cracked_stone_bricks",
+    "minecraft:chiseled_stone_bricks",
+    "minecraft:stone_brick_stairs",
+    "minecraft:emerald_ore",
+    "minecraft:stone_slab",
+    "minecraft:smooth_stone_slab",
+    "minecraft:cobblestone_slab",
+    "minecraft:stone_brick_slab",
+    "minecraft:smooth_stone",
+    "minecraft:mossy_stone_brick_stairs",
+    "minecraft:stone_stairs",
+    "minecraft:mossy_stone_brick_slab",
+    "minecraft:mossy_stone_brick_wall",
+    "minecraft:stone_brick_wall",
+    "minecraft:stonecutter",
+    "minecraft:copper_ore",
+    "minecraft:crafter"
+  ]
+}

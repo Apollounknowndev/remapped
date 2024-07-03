@@ -1,0 +1,24 @@
+{
+    "values": [
+        "minecraft:cyan_bed",
+        "minecraft:cyan_wool",
+        "minecraft:cyan_stained_glass",
+        "minecraft:prismarine",
+        "minecraft:prismarine_stairs",
+        "minecraft:prismarine_slab",
+        "minecraft:cyan_carpet",
+        "minecraft:cyan_shulker_box",
+        "minecraft:cyan_glazed_terracotta",
+        "minecraft:cyan_concrete",
+        "minecraft:cyan_concrete_powder",
+        "minecraft:prismarine_wall",
+        "minecraft:warped_fungus",
+        "minecraft:warped_roots",
+        "minecraft:nether_sprouts",
+        "minecraft:twisting_vines",
+        "minecraft:twisting_vines_plant",
+        "minecraft:cyan_candle",
+        "minecraft:sculk_sensor",
+        "minecraft:calibrated_sculk_sensor"
+    ]
+}
