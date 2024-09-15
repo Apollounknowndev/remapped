@@ -1,4 +1,4 @@
-package dev.worldgen.remapped.network;
+package dev.worldgen.remapped.network.s2c;
 
 import dev.worldgen.remapped.Remapped;
 import net.fabricmc.fabric.api.networking.v1.ServerConfigurationNetworking;
@@ -11,12 +11,12 @@ import net.minecraft.util.Identifier;
 
 import java.util.function.Consumer;
 
-public class RemappedEnablePacket implements CustomPayload {
-    public static final RemappedEnablePacket INSTANCE = new RemappedEnablePacket();
-    public static final PacketCodec<PacketByteBuf, RemappedEnablePacket> CODEC = PacketCodec.unit(INSTANCE);
-    public static final Id<RemappedEnablePacket> ID = new Id<>(Identifier.of(Remapped.MOD_ID, "remapped_enable"));
+public class EnablePacket implements CustomPayload {
+    public static final EnablePacket INSTANCE = new EnablePacket();
+    public static final PacketCodec<PacketByteBuf, EnablePacket> CODEC = PacketCodec.unit(INSTANCE);
+    public static final Id<EnablePacket> ID = new Id<>(Identifier.of(Remapped.MOD_ID, "enable"));
 
-    private RemappedEnablePacket() {
+    private EnablePacket() {
     }
 
     @Override
@@ -25,7 +25,7 @@ public class RemappedEnablePacket implements CustomPayload {
     }
 
     public static class RemappedEnableTask implements ServerPlayerConfigurationTask {
-        public static final Key KEY = new Key(Identifier.of(Remapped.MOD_ID, "remapped_enable").toString());
+        public static final Key KEY = new Key(Identifier.of(Remapped.MOD_ID, "enable").toString());
 
         public RemappedEnableTask() {
 
@@ -33,7 +33,7 @@ public class RemappedEnablePacket implements CustomPayload {
 
         @Override
         public void sendPacket(Consumer<Packet<?>> sender) {
-            sender.accept(ServerConfigurationNetworking.createS2CPacket(RemappedEnablePacket.INSTANCE));
+            sender.accept(ServerConfigurationNetworking.createS2CPacket(EnablePacket.INSTANCE));
         }
 
         @Override

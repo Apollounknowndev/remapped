@@ -22,6 +22,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.BiomeTags;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
@@ -37,6 +38,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.function.Function;
 
 public class RemappedUtils {
+    public static final TagKey<RemappedColor> FALLBACK = TagKey.of(RemappedColor.REGISTRY_KEY, Identifier.of(Remapped.MOD_ID, "fallback"));
     public static final RegistryKey<RemappedColor> EMPTY = of("empty");
     private static final RegistryKey<RemappedColor> DIRT_BROWN = of("dirt_brown");
     private static final RegistryKey<RemappedColor> STONE_GRAY = of("stone_gray");
@@ -58,31 +60,6 @@ public class RemappedUtils {
     public static RemappedState getState(ItemStack map, World world) {
         MapIdComponent id = map.get(DataComponentTypes.MAP_ID);
         return getState(id, world);
-    }
-
-    public static <B, C, T1, T2, T3, T4, T5, T6, T7> PacketCodec<B, C> tuple(final PacketCodec<? super B, T1> codec1, final Function<C, T1> from1, final PacketCodec<? super B, T2> codec2, final Function<C, T2> from2, final PacketCodec<? super B, T3> codec3, final Function<C, T3> from3, final PacketCodec<? super B, T4> codec4, final Function<C, T4> from4, final PacketCodec<? super B, T5> codec5, final Function<C, T5> from5, final PacketCodec<? super B, T6> codec6, final Function<C, T6> from6, final PacketCodec<? super B, T7> codec7, final Function<C, T7> from7, final Function7<T1, T2, T3, T4, T5, T6, T7, C> to) {
-        return new PacketCodec<>() {
-            public C decode(B object) {
-                T1 object1 = codec1.decode(object);
-                T2 object2 = codec2.decode(object);
-                T3 object3 = codec3.decode(object);
-                T4 object4 = codec4.decode(object);
-                T5 object5 = codec5.decode(object);
-                T6 object6 = codec6.decode(object);
-                T7 object7 = codec7.decode(object);
-                return to.apply(object1, object2, object3, object4, object5, object6, object7);
-            }
-
-            public void encode(B object, C object2) {
-                codec1.encode(object, from1.apply(object2));
-                codec2.encode(object, from2.apply(object2));
-                codec3.encode(object, from3.apply(object2));
-                codec4.encode(object, from4.apply(object2));
-                codec5.encode(object, from5.apply(object2));
-                codec6.encode(object, from6.apply(object2));
-                codec7.encode(object, from7.apply(object2));
-            }
-        };
     }
 
     public static void updateColors(ServerWorld world, Entity entity, RemappedState state) {
@@ -287,14 +264,27 @@ public class RemappedUtils {
 
     private static RegistryEntry<RemappedColor> getMatchingColor(Registry<RemappedColor> registry, RegistryEntry<Biome> biome, BlockState state) {
         for (RegistryEntry<RemappedColor> entry : registry.getIndexedEntries()) {
-            RemappedColor color = entry.value();
-            boolean blockMatch = state.isIn(color.blocks());
-            boolean biomeMatch = color.biomes().size() == 0 || color.biomes().contains(biome);
-            if (blockMatch && biomeMatch) {
+            if (!entry.isIn(FALLBACK)) {
+                if (colorMatched(entry, biome, state)) {
+                    return entry;
+                }
+            }
+        }
+
+        for (RegistryEntry<RemappedColor> entry : registry.iterateEntries(FALLBACK)) {
+            if (colorMatched(entry, biome, state)) {
                 return entry;
             }
         }
+
         return get(registry, EMPTY);
+    }
+
+    private static boolean colorMatched(RegistryEntry<RemappedColor> entry, RegistryEntry<Biome> biome, BlockState state) {
+        RemappedColor color = entry.value();
+        boolean blockMatch = state.isIn(color.blocks());
+        boolean biomeMatch = color.biomes().size() == 0 || color.biomes().contains(biome);
+        return blockMatch && biomeMatch;
     }
 
     private static BlockState getFluidStateIfVisible(World world, BlockState state, BlockPos pos) {

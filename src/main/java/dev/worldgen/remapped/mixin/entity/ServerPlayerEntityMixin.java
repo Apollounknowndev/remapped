@@ -4,7 +4,7 @@ import com.llamalad7.mixinextras.sugar.Local;
 import com.mojang.authlib.GameProfile;
 import dev.worldgen.remapped.map.RemappedState;
 import dev.worldgen.remapped.map.RemappedUtils;
-import dev.worldgen.remapped.network.RemappedMapUpdatePacket;
+import dev.worldgen.remapped.network.s2c.MapUpdatePacket;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.MapIdComponent;
@@ -37,7 +37,7 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity {
         RemappedState state = RemappedUtils.getState(id, this.getWorld());
 
         if (state != null) {
-            RemappedMapUpdatePacket packet = state.getPlayerMarkerPacket(id, this);
+            MapUpdatePacket packet = state.getPlayerMarkerPacket(id, this);
             if (packet != null) {
                 ServerPlayNetworking.send(((ServerPlayerEntity)(Object)this), packet);
             }

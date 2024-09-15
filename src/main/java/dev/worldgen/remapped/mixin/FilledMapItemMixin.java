@@ -157,7 +157,7 @@ public class FilledMapItemMixin {
         RemappedState state = RemappedUtils.getState(stack, world);
         if (state != null) {
             MapIdComponent id = world.increaseAndGetMapId();
-            world.remapped$setState(id, state.zoomOut());
+            world.remapped$setState(id, state.zoomOut(stack.get(Remapped.SCALE_FROM_CENTER) != null));
             stack.set(DataComponentTypes.MAP_ID, id);
         }
         ci.cancel();

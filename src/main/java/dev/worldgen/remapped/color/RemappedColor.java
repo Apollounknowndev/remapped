@@ -23,5 +23,4 @@ public record RemappedColor(int color, boolean useDithering, RegistryEntryList<B
         RegistryCodecs.entryList(RegistryKeys.BLOCK).fieldOf("blocks").forGetter(RemappedColor::blocks),
         Biome.REGISTRY_ENTRY_LIST_CODEC.fieldOf("biomes").orElse(RegistryEntryList.of()).forGetter(RemappedColor::biomes)
     ).apply(instance, RemappedColor::new));
-    public static final Codec<RegistryEntry<RemappedColor>> ENTRY_CODEC = RegistryElementCodec.of(REGISTRY_KEY, CODEC, false);
 }

@@ -6,11 +6,10 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import dev.worldgen.remapped.color.RemappedColor;
-import dev.worldgen.remapped.network.RemappedMapUpdatePacket;
+import dev.worldgen.remapped.network.s2c.MapUpdatePacket;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.MapDecorationsComponent;
 import net.minecraft.component.type.MapIdComponent;
-import net.minecraft.datafixer.DataFixTypes;
 import net.minecraft.entity.decoration.ItemFrameEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -29,7 +28,6 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.text.Text;
-import net.minecraft.util.dynamic.Codecs;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.BlockView;
@@ -67,6 +65,18 @@ public class RemappedState extends PersistentState {
         FRAME_CODEC.listOf().fieldOf("frames").forGetter(RemappedState::frames)
     ).apply(instance, RemappedState::new));
 
+    private static final Codec<RemappedState> LEGACY_CODEC = RecordCodecBuilder.create(instance -> instance.group(
+        World.CODEC.fieldOf("dimension").forGetter(RemappedState::dimension),
+        Codec.INT.fieldOf("xCenter").orElse(0).forGetter(RemappedState::centerX),
+        Codec.INT.fieldOf("zCenter").orElse(0).forGetter(RemappedState::centerZ),
+        SCALE_CODEC.fieldOf("scale").orElse((byte)0).forGetter(RemappedState::scale),
+        Codec.BOOL.fieldOf("trackingPosition").orElse(true).forGetter(RemappedState::showDecorations),
+        Codec.BOOL.fieldOf("unlimitedTracking").orElse(true).forGetter(RemappedState::unlimitedTracking),
+        Codec.BOOL.fieldOf("locked").orElse(false).forGetter(RemappedState::locked)
+    ).apply(instance, RemappedState::new));
+
+    private static final Codec<RemappedState> CODEC = Codec.withAlternative(BASE_CODEC, LEGACY_CODEC);
+
     private final RegistryKey<World> dimension;
     private final int centerX;
     private final int centerZ;
@@ -87,7 +97,11 @@ public class RemappedState extends PersistentState {
     public static PersistentState.Type<RemappedState> getPersistentStateType() {
         return new PersistentState.Type<>(() -> {
             throw new IllegalStateException("Should never create an empty map saved data");
-        }, RemappedState::fromNbt, DataFixTypes.SAVED_DATA_MAP_DATA);
+        }, RemappedState::fromNbt, null);
+    }
+
+    private RemappedState(RegistryKey<World> dimension, int centerX, int centerZ, byte scale, boolean showDecorations, boolean unlimitedTracking, boolean locked) {
+        this(dimension, centerX, centerZ, scale, showDecorations, unlimitedTracking, locked, getDefaultPixels(), List.of(), List.of());
     }
 
     private RemappedState(RegistryKey<World> dimension, int centerX, int centerZ, byte scale, boolean showDecorations, boolean unlimitedTracking, boolean locked, List<Integer> colors, List<MapBannerMarker> banners, List<MapFrameMarker> frames) {
@@ -175,11 +189,11 @@ public class RemappedState extends PersistentState {
     }
 
     public static RemappedState of(byte scale, boolean locked, RegistryKey<World> dimension) {
-        return new RemappedState(dimension,0, 0, scale, false, false, locked, getDefaultPixels(), List.of(), List.of());
+        return new RemappedState(dimension, 0, 0, scale, false, false, locked, getDefaultPixels(), List.of(), List.of());
     }
 
     public static RemappedState fromNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
-        return BASE_CODEC.parse(registryLookup.getOps(NbtOps.INSTANCE), nbt).getOrThrow();
+        return CODEC.parse(registryLookup.getOps(NbtOps.INSTANCE), nbt).getOrThrow();
     }
 
     @Override
@@ -195,8 +209,8 @@ public class RemappedState extends PersistentState {
         return remappedState;
     }
 
-    public RemappedState zoomOut() {
-        return of(this.centerX, this.centerZ, (byte)MathHelper.clamp(this.scale + 1, 0, MAX_SCALE), this.showDecorations, this.unlimitedTracking, this.dimension, false);
+    public RemappedState zoomOut(boolean scaleFromCenter) {
+        return of(this.centerX, this.centerZ, (byte)MathHelper.clamp(this.scale + 1, 0, MAX_SCALE), this.showDecorations, this.unlimitedTracking, this.dimension, !scaleFromCenter);
     }
 
     private static Predicate<ItemStack> getEqualPredicate(ItemStack stack) {
@@ -334,7 +348,7 @@ public class RemappedState extends PersistentState {
     }
 
     @Nullable
-    public RemappedMapUpdatePacket getPlayerMarkerPacket(MapIdComponent mapId, PlayerEntity player) {
+    public MapUpdatePacket getPlayerMarkerPacket(MapIdComponent mapId, PlayerEntity player) {
         RemappedState.PlayerUpdateTracker playerUpdateTracker = this.updateTrackersByPlayer.get(player);
         return playerUpdateTracker == null ? null : playerUpdateTracker.getPacket(mapId);
     }
@@ -525,7 +539,7 @@ public class RemappedState extends PersistentState {
         }
 
         @Nullable
-        RemappedMapUpdatePacket getPacket(MapIdComponent mapId) {
+        MapUpdatePacket getPacket(MapIdComponent mapId) {
             RemappedState.UpdateData updateData;
             if (this.dirty) {
                 this.dirty = false;
@@ -542,7 +556,7 @@ public class RemappedState extends PersistentState {
                 collection = null;
             }
 
-            return collection == null && updateData == null ? null : new RemappedMapUpdatePacket(mapId, RemappedState.this.scale, RemappedState.this.locked, collection, updateData);
+            return collection == null && updateData == null ? null : new MapUpdatePacket(mapId, RemappedState.this.scale, RemappedState.this.locked, collection, updateData);
         }
 
         void markDirty(int startX, int startZ) {

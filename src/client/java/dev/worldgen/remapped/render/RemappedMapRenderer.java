@@ -46,10 +46,10 @@ public class RemappedMapRenderer implements AutoCloseable {
         this.getMapTexture(id, state).draw(matrices, vertexConsumers, hidePlayerIcons, light);
     }
 
-    private RemappedMapRenderer.MapTexture getMapTexture(MapIdComponent id, RemappedState state) {
-        return this.mapTextures.compute(id.id(), (id2, texture) -> {
+    private RemappedMapRenderer.MapTexture getMapTexture(MapIdComponent component, RemappedState state) {
+        return this.mapTextures.compute(component.id(), (id, texture) -> {
             if (texture == null) {
-                return new MapTexture(id2, state);
+                return new MapTexture(id, state);
             } else {
                 texture.setState(state);
                 return texture;

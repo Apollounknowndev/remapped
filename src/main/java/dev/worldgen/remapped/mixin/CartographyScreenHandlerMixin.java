@@ -1,10 +1,13 @@
 package dev.worldgen.remapped.mixin;
 
 import dev.worldgen.remapped.Remapped;
+import dev.worldgen.remapped.config.ConfigHandler;
 import dev.worldgen.remapped.map.RemappedState;
 import dev.worldgen.remapped.map.RemappedUtils;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.MapPostProcessingComponent;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.CraftingResultInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -12,16 +15,19 @@ import net.minecraft.screen.CartographyTableScreenHandler;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.screen.ScreenHandlerType;
+import net.minecraft.util.Unit;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(CartographyTableScreenHandler.class)
 public abstract class CartographyScreenHandlerMixin extends ScreenHandler {
+
     @Shadow
     @Final
     private ScreenHandlerContext context;
@@ -36,9 +42,7 @@ public abstract class CartographyScreenHandlerMixin extends ScreenHandler {
 
     @Inject(
         method = "updateResult",
-        at = @At(
-            value = "TAIL"
-        )
+        at = @At("TAIL")
     )
     private void remapped$fixCartographyTable(ItemStack first, ItemStack second, ItemStack oldResult, CallbackInfo ci) {
         this.context.run((world, pos) -> {
@@ -48,6 +52,9 @@ public abstract class CartographyScreenHandlerMixin extends ScreenHandler {
                 if (second.isOf(Items.PAPER) && !state.locked() && state.scale() < 4) {
                     output = first.copyWithCount(1);
                     output.set(DataComponentTypes.MAP_POST_PROCESSING, MapPostProcessingComponent.SCALE);
+                    if (ConfigHandler.scaleMapsFromCenter()) {
+                        output.set(Remapped.SCALE_FROM_CENTER, Unit.INSTANCE);
+                    }
                     this.sendContentUpdates();
                 } else if (second.isOf(Items.GLASS_PANE) && !state.locked()) {
                     output = first.copyWithCount(1);

@@ -18,7 +18,7 @@ public class ItemMixin {
         cancellable = true
     )
     private void remapped$fixVanillaEmptyMapName(ItemStack stack, CallbackInfoReturnable<Text> cir) {
-        if (stack.getItem() == Items.MAP && Remapped.enabled()) {
+        if (stack.getItem() == Items.MAP && !Remapped.disabled()) {
             cir.setReturnValue(Text.translatable("item.remapped.empty_locator_map"));
         }
     }

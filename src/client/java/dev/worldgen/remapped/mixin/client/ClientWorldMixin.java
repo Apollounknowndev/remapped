@@ -5,14 +5,19 @@ import dev.worldgen.remapped.duck.RemappedWorldAccess;
 import dev.worldgen.remapped.map.RemappedState;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.component.type.MapIdComponent;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @Mixin(ClientWorld.class)
 public class ClientWorldMixin implements RemappedClientWorldAccess {
+    @Unique
+    @Final
     private final Map<MapIdComponent, RemappedState> remapped$clientStates = new HashMap<>();
+
     @Override
     public RemappedState remapped$getState(MapIdComponent id) {
         return this.remapped$clientStates.get(id);
@@ -20,6 +25,10 @@ public class ClientWorldMixin implements RemappedClientWorldAccess {
 
     @Override
     public void remapped$setState(MapIdComponent id, RemappedState state) {
+    }
+
+    @Override
+    public void remapped$setClientSideState(MapIdComponent id, RemappedState state) {
         this.remapped$clientStates.put(id, state);
     }
 

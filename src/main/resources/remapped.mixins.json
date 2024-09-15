@@ -9,6 +9,7 @@
     "FilledMapItemMixin",
     "ItemMixin",
     "MapExtendingRecipeMixin",
+    "PersistentStateManagerMixin",
     "ServerWorldMixin",
     "TooltipContextAccessor",
     "WorldMixin",

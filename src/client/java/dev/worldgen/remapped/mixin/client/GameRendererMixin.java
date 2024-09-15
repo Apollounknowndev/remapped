@@ -29,11 +29,6 @@ public class GameRendererMixin implements RemappedRendererAccess {
 		this.remappedMapRenderer.close();
 	}
 
-	@Inject(at = @At("TAIL"), method = "close")
-	private void remapped$clearRendererTextures(CallbackInfo ci) {
-		this.remappedMapRenderer.clearStateTextures();
-	}
-
 	@Override
 	public RemappedMapRenderer remapped$getRenderer() {
 		return this.remappedMapRenderer;

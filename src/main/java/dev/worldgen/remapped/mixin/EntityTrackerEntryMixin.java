@@ -3,7 +3,7 @@ package dev.worldgen.remapped.mixin;
 import com.llamalad7.mixinextras.sugar.Local;
 import dev.worldgen.remapped.map.RemappedState;
 import dev.worldgen.remapped.map.RemappedUtils;
-import dev.worldgen.remapped.network.RemappedMapUpdatePacket;
+import dev.worldgen.remapped.network.s2c.MapUpdatePacket;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.component.type.MapIdComponent;
 import net.minecraft.item.ItemStack;
@@ -14,7 +14,9 @@ import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(EntityTrackerEntry.class)
@@ -36,7 +38,7 @@ public class EntityTrackerEntryMixin {
         if (state != null) {
             for (ServerPlayerEntity player : this.world.getPlayers()) {
                 state.update(player, stack);
-                RemappedMapUpdatePacket packet = state.getPlayerMarkerPacket(id, player);
+                MapUpdatePacket packet = state.getPlayerMarkerPacket(id, player);
                 if (packet != null) {
                     ServerPlayNetworking.send(player, packet);
                 }
