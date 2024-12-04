@@ -15,7 +15,7 @@ public class CartographyScreenHandlerSlotMixin {
         cancellable = true
     )
     private void remapped$fixMapCloning(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
-        if (stack.isOf(Remapped.EMPTY_MAP)) {
+        if (stack.isOf(Remapped.EMPTY_MAP_ITEM)) {
             cir.setReturnValue(true);
         }
     }

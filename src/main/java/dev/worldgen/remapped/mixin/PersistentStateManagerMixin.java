@@ -13,12 +13,13 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Map;
+import java.util.Optional;
 
 @Mixin(PersistentStateManager.class)
 public class PersistentStateManagerMixin {
     @Shadow
     @Final
-    private final Map<String, PersistentState> loadedStates = Maps.newHashMap();
+    private final Map<String, Optional<PersistentState>> loadedStates = Maps.newHashMap();
 
     @Inject(
         method = "get(Lnet/minecraft/world/PersistentState$Type;Ljava/lang/String;)Lnet/minecraft/world/PersistentState;",
@@ -32,8 +33,8 @@ public class PersistentStateManagerMixin {
         }
 
         // Fix getting MapState when querying RemappedState
-        PersistentState persistentState = this.loadedStates.get(id);
-        if (persistentState instanceof MapState) {
+        Optional<PersistentState> persistentState = this.loadedStates.get(id);
+        if (persistentState != null && persistentState.isPresent() && persistentState.get() instanceof MapState) {
             this.loadedStates.remove(id);
             cir.setReturnValue(null);
         }

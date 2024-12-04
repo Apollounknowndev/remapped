@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": {
-      "item": "minecraft:paper"
-    },
-    "X": {
-      "item": "minecraft:ink_sac"
-    }
+    "#": "minecraft:paper",
+    "X": "minecraft:ink_sac"
   },
   "pattern": [
     "###",

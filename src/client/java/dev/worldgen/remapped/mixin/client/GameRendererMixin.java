@@ -15,22 +15,10 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(GameRenderer.class)
-public class GameRendererMixin implements RemappedRendererAccess {
-	@Unique
-	public RemappedMapRenderer remappedMapRenderer;
+public class GameRendererMixin {
 
-	@Inject(at = @At("TAIL"), method = "<init>")
-	private void remapped$createRenderer(MinecraftClient client, HeldItemRenderer heldItemRenderer, ResourceManager resourceManager, BufferBuilderStorage buffers, CallbackInfo ci) {
-		this.remappedMapRenderer = new RemappedMapRenderer(client.getTextureManager(), client.getMapDecorationsAtlasManager());
-	}
-
-	@Inject(at = @At("TAIL"), method = "close")
-	private void remapped$closeRenderer(CallbackInfo ci) {
-		this.remappedMapRenderer.close();
-	}
-
-	@Override
-	public RemappedMapRenderer remapped$getRenderer() {
-		return this.remappedMapRenderer;
+	@Inject(at = @At("TAIL"), method = "reset")
+	private void remapped$clearRenderer(CallbackInfo ci) {
+		((RemappedRendererAccess)((GameRenderer)(Object)this).getClient()).remapped$getRenderer().clear();
 	}
 }

@@ -64,7 +64,7 @@ public class RemappedUtils {
 
     public static void updateColors(ServerWorld world, Entity entity, RemappedState state) {
         if (world.getRegistryKey() == state.dimension() && entity instanceof PlayerEntity) {
-            Registry<RemappedColor> registry = world.getRegistryManager().get(RemappedColor.REGISTRY_KEY);
+            Registry<RemappedColor> registry = world.getRegistryManager().getOrThrow(RemappedColor.REGISTRY_KEY);
 
             int squaredScale = 1 << state.scale();
             int centerX = state.centerX();
@@ -191,7 +191,7 @@ public class RemappedUtils {
         RemappedState state = getState(map, world);
         if (state != null) {
             if (world.getRegistryKey() == state.dimension()) {
-                Registry<RemappedColor> registry = world.getRegistryManager().get(RemappedColor.REGISTRY_KEY);
+                Registry<RemappedColor> registry = world.getRegistryManager().getOrThrow(RemappedColor.REGISTRY_KEY);
                 int i = 1 << state.scale();
                 int j = state.centerX();
                 int k = state.centerZ();
@@ -249,7 +249,7 @@ public class RemappedUtils {
                         }
 
                         if (color != EMPTY) {
-                            state.putPixel(n, o, registry.getEntry(color).get(), brightness.id);
+                            state.putPixel(n, o, registry.getOptional(color).get(), brightness.id);
                         }
                     }
                 }
@@ -259,7 +259,7 @@ public class RemappedUtils {
     }
 
     private static RegistryEntry<RemappedColor> get(Registry<RemappedColor> registry, RegistryKey<RemappedColor> key) {
-        return registry.getEntry(key).get();
+        return registry.getOptional(key).get();
     }
 
     private static RegistryEntry<RemappedColor> getMatchingColor(Registry<RemappedColor> registry, RegistryEntry<Biome> biome, BlockState state) {
@@ -294,7 +294,7 @@ public class RemappedUtils {
 
     public static boolean canZoom(ItemStack first, ItemStack second, World world) {
         RemappedState state = getState(first, world);
-        if (state != null && (second.isOf(Items.MAP) || second.isOf(Remapped.EMPTY_MAP))) {
+        if (state != null && (second.isOf(Items.MAP) || second.isOf(Remapped.EMPTY_MAP_ITEM))) {
             boolean firstTracks = state.showDecorations();
             boolean secondTracks = second.isOf(Items.MAP);
             return firstTracks == secondTracks;

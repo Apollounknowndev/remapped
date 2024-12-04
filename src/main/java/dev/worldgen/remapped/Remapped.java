@@ -1,5 +1,6 @@
 package dev.worldgen.remapped;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import dev.worldgen.remapped.color.RemappedColor;
 import dev.worldgen.remapped.config.ConfigHandler;
 import dev.worldgen.remapped.item.EmptyTrackerlessMap;
@@ -19,17 +20,19 @@ import net.minecraft.item.Items;
 import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Unit;
-import net.minecraft.world.gen.chunk.placement.StructurePlacement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class Remapped implements ModInitializer {
 	public static final String MOD_ID = "remapped";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-	public static final Item EMPTY_MAP = Registry.register(Registries.ITEM, Identifier.of(MOD_ID, "empty_map"), new EmptyTrackerlessMap(new Item.Settings()));
+    public static final RegistryKey<Item> EMPTY_MAP_KEY = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(MOD_ID, "empty_map"));
+	public static final Item EMPTY_MAP_ITEM = Registry.register(Registries.ITEM, EMPTY_MAP_KEY, new EmptyTrackerlessMap(new Item.Settings().registryKey(EMPTY_MAP_KEY)));
 	public static final ComponentType<Unit> SCALE_FROM_CENTER = Registry.register(Registries.DATA_COMPONENT_TYPE, Identifier.of(MOD_ID, "scale_from_center"),
 		ComponentType.<Unit>builder().codec(Unit.CODEC).packetCodec(PacketCodec.unit(Unit.INSTANCE)).build()
 	);
@@ -40,7 +43,7 @@ public class Remapped implements ModInitializer {
 	public void onInitialize() {
 		ConfigHandler.load();
 
-		ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(entries -> entries.addBefore(Items.MAP, EMPTY_MAP));
+		ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(entries -> entries.addBefore(Items.MAP, EMPTY_MAP_ITEM));
 
 		DynamicRegistries.registerSynced(RemappedColor.REGISTRY_KEY, RemappedColor.CODEC);
 

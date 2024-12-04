@@ -25,14 +25,10 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity {
     }
 
     @Inject(
-        method = "playerTick",
-        at = @At(
-            value = "INVOKE",
-            target = "Lnet/minecraft/item/NetworkSyncedItem;createSyncPacket(Lnet/minecraft/item/ItemStack;Lnet/minecraft/world/World;Lnet/minecraft/entity/player/PlayerEntity;)Lnet/minecraft/network/packet/Packet;",
-            shift = At.Shift.BEFORE
-        )
+        method = "sendMapPacket",
+        at = @At("HEAD")
     )
-    private void remapped$fixFilledMapPacket(CallbackInfo ci, @Local(ordinal = 0) ItemStack stack) {
+    private void remapped$fixFilledMapPacket(ItemStack stack, CallbackInfo ci) {
         MapIdComponent id = stack.get(DataComponentTypes.MAP_ID);
         RemappedState state = RemappedUtils.getState(id, this.getWorld());
 

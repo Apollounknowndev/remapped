@@ -1,0 +1,21 @@
+{
+    "values": [
+        "minecraft:tuff",
+        "minecraft:tuff_slab",
+        "minecraft:tuff_stairs",
+        "minecraft:tuff_wall",
+        "minecraft:polished_tuff",
+        "minecraft:polished_tuff_slab",
+        "minecraft:polished_tuff_stairs",
+        "minecraft:polished_tuff_wall",
+        "minecraft:chiseled_tuff",
+        "minecraft:tuff_bricks",
+        "minecraft:tuff_brick_slab",
+        "minecraft:tuff_brick_stairs",
+        "minecraft:tuff_brick_wall",
+        "minecraft:chiseled_tuff_bricks",
+        "minecraft:pale_oak_leaves",
+        "minecraft:pale_moss_block",
+        "minecraft:pale_moss_carpet"
+    ]
+}

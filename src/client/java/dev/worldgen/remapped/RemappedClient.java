@@ -20,7 +20,7 @@ public class RemappedClient implements ClientModInitializer {
 
 		ClientPlayNetworking.registerGlobalReceiver(MapUpdatePacket.ID, (payload, context) -> {
 			MinecraftClient client = context.client();
-			RemappedMapRenderer renderer = ((RemappedRendererAccess)client.gameRenderer).remapped$getRenderer();
+			RemappedMapRenderer renderer = ((RemappedRendererAccess)client).remapped$getRenderer();
 			MapIdComponent id = payload.mapId();
 			RemappedState state = client.world.remapped$getState(id);
 			if (state == null) {
@@ -30,7 +30,7 @@ public class RemappedClient implements ClientModInitializer {
 			}
 
 			payload.apply(state);
-			renderer.updateTexture(id, state);
+			renderer.getTextureManager().setNeedsUpdate(id, state);
 		});
 
 		ClientConfigurationNetworking.registerGlobalReceiver(EnablePacket.ID, ((payload, context) -> {

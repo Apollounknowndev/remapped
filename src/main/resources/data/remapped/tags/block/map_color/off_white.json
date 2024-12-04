@@ -17,6 +17,20 @@
         "minecraft:diorite_slab",
         "minecraft:diorite_wall",
         "minecraft:target",
-        "minecraft:quartz_bricks"
+        "minecraft:quartz_bricks",
+        "minecraft:pale_oak_hanging_sign",
+        "minecraft:pale_oak_wall_hanging_sign",
+        "minecraft:pale_oak_planks",
+        "minecraft:pale_oak_log",
+        "minecraft:stripped_pale_oak_log",
+        "minecraft:pale_oak_sign",
+        "minecraft:pale_oak_wall_sign",
+        "minecraft:pale_oak_pressure_plate",
+        "minecraft:pale_oak_trapdoor",
+        "minecraft:pale_oak_stairs",
+        "minecraft:pale_oak_slab",
+        "minecraft:pale_oak_fence_gate",
+        "minecraft:pale_oak_fence",
+        "minecraft:pale_oak_door"
     ]
 }
