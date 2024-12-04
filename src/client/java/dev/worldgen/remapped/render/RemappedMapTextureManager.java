@@ -53,7 +53,7 @@ public class RemappedMapTextureManager implements AutoCloseable {
     }
 
     @Environment(EnvType.CLIENT)
-    class MapTexture implements AutoCloseable {
+    static class MapTexture implements AutoCloseable {
         private RemappedState state;
         private final NativeImageBackedTexture texture;
         private boolean needsUpdate = true;
@@ -62,7 +62,8 @@ public class RemappedMapTextureManager implements AutoCloseable {
         MapTexture(final RemappedMapTextureManager mapTextureManager, final int id, final RemappedState state) {
             this.state = state;
             this.texture = new NativeImageBackedTexture(128, 128, true);
-            this.textureId = mapTextureManager.textureManager.registerDynamicTexture("map/" + id, this.texture);
+            this.textureId = Identifier.ofVanilla("map/" + id);
+            mapTextureManager.textureManager.registerTexture(this.textureId, this.texture);
         }
 
         void setState(RemappedState state) {

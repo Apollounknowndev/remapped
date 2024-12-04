@@ -23,18 +23,6 @@ public abstract class ItemFrameEntityRendererMixin {
     private final RemappedMapRenderer remappedMapRenderer = ((RemappedRendererAccess)MinecraftClient.getInstance()).remapped$getRenderer();
 
     @Inject(
-        method = "render(Lnet/minecraft/client/render/entity/state/ItemFrameEntityRenderState;Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V",
-        at = @At(
-            value = "INVOKE",
-            target = "Lnet/minecraft/client/render/MapRenderer;draw(Lnet/minecraft/client/render/MapRenderState;Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ZI)V"
-        )
-    )
-    private void remapped$renderRemappedMap(ItemFrameEntityRenderState itemFrameEntityRenderState, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, CallbackInfo ci, @Local(ordinal = 0) MapIdComponent id) {
-        int k = itemFrameEntityRenderState.glow ? 15728850 : i;
-        this.remappedMapRenderer.draw(itemFrameEntityRenderState.mapRenderState, matrixStack, vertexConsumerProvider, true, k);
-    }
-
-    @Inject(
         method = "updateRenderState(Lnet/minecraft/entity/decoration/ItemFrameEntity;Lnet/minecraft/client/render/entity/state/ItemFrameEntityRenderState;F)V",
         at = @At(
             value = "INVOKE",

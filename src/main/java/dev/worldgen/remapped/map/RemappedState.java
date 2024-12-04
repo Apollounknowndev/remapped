@@ -256,8 +256,8 @@ public class RemappedState extends PersistentState {
                 this.removeDecoration(getFrameDecorationKey(mapFrameMarker.getEntityId()));
             }
 
-            MapFrameMarker mapFrameMarker2 = new MapFrameMarker(blockPos, itemFrameEntity.getHorizontalFacing().getHorizontal() * 90, itemFrameEntity.getId());
-            this.addDecoration(MapDecorationTypes.FRAME, player.getWorld(), getFrameDecorationKey(itemFrameEntity.getId()), blockPos.getX(), blockPos.getZ(), itemFrameEntity.getHorizontalFacing().getHorizontal() * 90, null);
+            MapFrameMarker mapFrameMarker2 = new MapFrameMarker(blockPos, itemFrameEntity.getHorizontalFacing().getHorizontalQuarterTurns() * 90, itemFrameEntity.getId());
+            this.addDecoration(MapDecorationTypes.FRAME, player.getWorld(), getFrameDecorationKey(itemFrameEntity.getId()), blockPos.getX(), blockPos.getZ(), itemFrameEntity.getHorizontalFacing().getHorizontalQuarterTurns() * 90, null);
             this.trackedFrames.put(mapFrameMarker2.getKey(), mapFrameMarker2);
         }
 

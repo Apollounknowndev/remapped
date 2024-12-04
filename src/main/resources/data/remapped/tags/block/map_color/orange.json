@@ -60,6 +60,12 @@
         "minecraft:copper_bulb",
         "minecraft:waxed_copper_bulb",
         "minecraft:lightning_rod",
-        "minecraft:raw_copper_block"
+        "minecraft:raw_copper_block",
+        "minecraft:resin_block",
+        "minecraft:resin_bricks",
+        "minecraft:resin_brick_stairs",
+        "minecraft:resin_brick_slab",
+        "minecraft:resin_brick_wall",
+        "minecraft:chiseled_resin_bricks"
     ]
 }

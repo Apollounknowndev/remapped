@@ -19,7 +19,7 @@ public record MapUpdatePacket(MapIdComponent mapId, byte scale, boolean locked, 
     public static final PacketCodec<RegistryByteBuf, MapUpdatePacket> CODEC = PacketCodec.tuple(
         MapIdComponent.PACKET_CODEC, MapUpdatePacket::mapId,
         PacketCodecs.BYTE, MapUpdatePacket::scale,
-        PacketCodecs.BOOL, MapUpdatePacket::locked,
+        PacketCodecs.BOOLEAN, MapUpdatePacket::locked,
         MapDecoration.CODEC.collect(PacketCodecs.toList()).collect(PacketCodecs::optional), MapUpdatePacket::decorations,
         RemappedState.UpdateData.OPTIONAL_CODEC, MapUpdatePacket::updateData,
         MapUpdatePacket::new

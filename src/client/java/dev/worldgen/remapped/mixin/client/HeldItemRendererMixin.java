@@ -24,7 +24,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class HeldItemRendererMixin {
     @Shadow
     @Final
-    private MapRenderState field_53067 = new MapRenderState();
+    private MapRenderState mapRenderState = new MapRenderState();
 
     @Shadow
     @Final
@@ -38,8 +38,8 @@ public class HeldItemRendererMixin {
         RemappedState state = RemappedUtils.getState(id, this.client.world);
         if (state != null) {
             RemappedMapRenderer mapRenderer = ((RemappedRendererAccess)this.client).remapped$getRenderer();
-            mapRenderer.update(id, state, this.field_53067);
-            mapRenderer.draw(this.field_53067, matrices, vertexConsumers, false, swingProgress);
+            mapRenderer.update(id, state, this.mapRenderState);
+            mapRenderer.draw(this.mapRenderState, matrices, vertexConsumers, false, swingProgress);
         }
 
     }
