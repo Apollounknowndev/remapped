@@ -24,7 +24,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class HeldItemRendererMixin {
     @Shadow
     @Final
-    private MapRenderState mapRenderState = new MapRenderState();
+    private MapRenderState mapRenderState;
 
     @Shadow
     @Final

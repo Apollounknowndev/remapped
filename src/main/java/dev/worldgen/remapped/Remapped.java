@@ -33,7 +33,7 @@ public class Remapped implements ModInitializer {
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
     public static final RegistryKey<Item> EMPTY_MAP_KEY = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(MOD_ID, "empty_map"));
 	public static final Item EMPTY_MAP_ITEM = Registry.register(Registries.ITEM, EMPTY_MAP_KEY, new EmptyTrackerlessMap(
-		new Item.Settings().registryKey(EMPTY_MAP_KEY).component(DataComponentTypes.ITEM_MODEL, Identifier.ofVanilla("map"))
+		new Item.Settings().registryKey(EMPTY_MAP_KEY)
 	));
 	public static final ComponentType<Unit> SCALE_FROM_CENTER = Registry.register(Registries.DATA_COMPONENT_TYPE, Identifier.of(MOD_ID, "scale_from_center"),
 		ComponentType.<Unit>builder().codec(Unit.CODEC).packetCodec(PacketCodec.unit(Unit.INSTANCE)).build()

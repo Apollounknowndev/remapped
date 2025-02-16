@@ -19,7 +19,7 @@ import java.util.Optional;
 public class PersistentStateManagerMixin {
     @Shadow
     @Final
-    private final Map<String, Optional<PersistentState>> loadedStates = Maps.newHashMap();
+    private Map<String, Optional<PersistentState>> loadedStates;
 
     @Inject(
         method = "get(Lnet/minecraft/world/PersistentState$Type;Ljava/lang/String;)Lnet/minecraft/world/PersistentState;",
